@@ -1,9 +1,18 @@
 import { useForm } from 'react-hook-form';
 
+interface IErrors {
+	email: string;
+	msg: string;
+}
+
 function Todo() {
-	const { register, handleSubmit, formState } = useForm();
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+	} = useForm<IErrors>();
 	const onValid = (data: any) => {};
-	console.log(formState.errors);
+	console.log(errors);
 
 	return (
 		<>
@@ -12,8 +21,15 @@ function Todo() {
 					<legend>Todolist</legend>
 					<input
 						placeholder='user email'
-						{...register('email', { required: '이메일입력해요' })}
+						{...register('email', {
+							required: '이메일입력해요',
+							pattern: {
+								value: /^[a-zA-Z0-9._%+-]+@naver.com$/,
+								message: '네이버 이메일만 허용됩니다',
+							},
+						})}
 					/>
+					<span>{errors?.email?.message}</span>
 					<input
 						type='text'
 						placeholder='메시지 입력하세요'
