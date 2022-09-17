@@ -11,7 +11,7 @@ function TodoList() {
 		const {
 			currentTarget: { value },
 		} = event;
-		setCategory(value);
+		setCategory(value as any);
 		// 선택한 option에 있는 데이터만 호출되게
 	};
 	return (

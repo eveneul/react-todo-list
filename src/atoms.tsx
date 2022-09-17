@@ -1,13 +1,15 @@
 import { atom, selector } from 'recoil';
 // selector: atom의 output을 변형시켜 줌
 
+type categories = 'TO_DO' | 'DOING' | 'DONE';
+
 export interface IToDo {
 	text: string;
 	id: number;
-	category: 'TO_DO' | 'DOING' | 'DONE';
+	category: categories;
 }
 
-export const categoryState = atom({
+export const categoryState = atom<categories>({
 	key: 'category',
 	default: 'TO_DO',
 });
