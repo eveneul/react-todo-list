@@ -1,5 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
-import Todo from './components/Todo';
+import Todo from './components/TodoList';
 
 const GlobalStyle = createGlobalStyle`
   * {margin: 0;padding: 0;box-sizing: border-box;}
