@@ -13,7 +13,7 @@ function CreateTodo() {
 	const setToDos = useSetRecoilState(toDoState);
 	const handleValid = ({ todo }: IForm) => {
 		setToDos((current) => [
-			{ text: todo, category: category, id: Date.now() },
+			{ text: todo, category, id: Date.now() },
 			...current,
 		]);
 		setValue('todo', '');
