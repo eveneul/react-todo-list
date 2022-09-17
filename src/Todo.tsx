@@ -3,19 +3,24 @@ import styled from 'styled-components';
 import { useForm } from 'react-hook-form';
 
 function Todo() {
-	const { register, watch } = useForm();
+	const { register, watch, handleSubmit } = useForm();
+	//handleSubmit: form validation 담당
+	//handleSubmit(데이터가 유효할때, 데이터가 유효하지 않을때)
+	//handleSubmit의 onInvalid는 필수적이지 않지만 onValid는 필수적
 
-	// register: onBlur, onChange, onClick, ref... 를 return 해 주는 함수
-	// watch: 유저가 input에 입력한 내용을 바로바로 return 해 줌
-	console.log(watch());
+	//hook-form에서 required를 적으면 누군가 개발자도구를 열어서 html을 수정할 수도 없고, 사용자가 입력을 안 했을 시 자동으로 입력을 안 한 곳으로 focus, 마우스가 이동해서 사용자의 편의성을 도와준다
+
+	const onValid = (data: any) => {
+		console.log(data);
+	};
 
 	return (
 		<>
 			<div className='input-todo'>
-				<form action=''>
+				<form onSubmit={handleSubmit(onValid)}>
 					<legend>Todolist</legend>
 					<input
-						{...register('toDo')}
+						{...(register('toDo'), { required: true, minLength: 10 })}
 						type='text'
 						placeholder='오늘의 할일을 적어주세요'
 					/>
